@@ -10,6 +10,8 @@
                  [ch.qos.logback/logback-classic "1.0.13"]
                  [org.clojure/tools.cli "0.2.4"]
                  [org.javassist/javassist "3.18.0-GA"]]
+  :source-paths ["src/clojure"]
+  :java-source-paths ["src/java"]
   :aot [postman.handler]
   :main postman.core
   :profiles {:uberjar {:aot :all}})

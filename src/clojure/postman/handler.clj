@@ -4,7 +4,8 @@
            [io.netty.handler.codec.string StringDecoder]
            [io.netty.handler.codec DelimiterBasedFrameDecoder Delimiters]
            [io.netty.channel ChannelInboundHandlerAdapter ChannelHandlerContext]
-           [io.netty.util CharsetUtil])
+           [io.netty.util CharsetUtil]
+           [postman.util NettyUtil])
   (:gen-class
     :name postman.handler.PostmanHandlerInitializer
     :extends io.netty.channel.ChannelInitializer))
@@ -17,7 +18,7 @@
     (proxy [ChannelInboundHandlerAdapter] []
       (channelRead [^ChannelHandlerContext ctx msg]
         (log/info msg)
-        (.writeAndFlush (.channel ctx) msg)))))
+        (NettyUtil/writeAndFlush ctx msg)))))
 
 (defn -initChannel [this ch]
   (doto (.pipeline ch)
